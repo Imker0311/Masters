@@ -45,3 +45,14 @@ def frho(T, Bx):
     # Density (juice)
     return (1 + Bx * (Bx + 200) / 54e3) * (1 - 0.036 * (T - 20) / (160 - T))
 
+
+def fT_eq_w(P):
+    # Saturation temperature of pure water [°C] from pressure P [kPa]
+    return 2188.8 / (7.8656 - np.log10(P)) - 273.15
+
+
+def fdhvap_w(T):
+    # Heat of vaporisation of pure water [MJ/t] at temperature T [°C]
+    Tr = (T + 273.15) / 647.13
+
+    return 2889 * (1 - Tr) ** (0.3199 - 0.212 * Tr + 0.25795 * Tr**2)
